@@ -33,7 +33,7 @@ char* strip(char* str) {
   // consisted of nothing but spaces, so we'll return the
   // empty string.
   if (num_spaces >= size) {
-    return "";
+    return strdup("");
   }
 
   // Allocate a slot for all the "saved" characters
@@ -45,7 +45,6 @@ char* strip(char* str) {
   }
   // Place the null terminator at the end of the result string.
   result[i-first_non_space] = '\0';
-
   return result;
 }
 
@@ -66,7 +65,7 @@ int is_clean(char* str) {
   // 0 if they're equal, and a positive value if the first is
   // greater than the second.
   result = strcmp(str, cleaned);
-
+  free(cleaned);  
   return result == 0;
 }
 
@@ -90,6 +89,5 @@ int main() {
       printf("The string '%s' is NOT clean.\n", strings[i]);
     }
   }
-
   return 0;
 }
